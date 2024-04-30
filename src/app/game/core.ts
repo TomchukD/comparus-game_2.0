@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CellState } from 'src/app/game/game.enum';
+import { CellState, Players } from 'src/app/game/game.enum';
 
 @Injectable({ providedIn: 'root' })
 export class Core {
@@ -23,15 +23,24 @@ export class Core {
 
     public time: number = 0;
 
-    public dataChangeCallback: any;
+    public updateStatusCellCallBeck: any;
+
+    public checkWinnerCallBack: any;
 
     // ########################################
 
     public updateCellState(data: string[]): void {
-        if (this.dataChangeCallback) {
-            this.dataChangeCallback(data);
+        if (this.updateStatusCellCallBeck) {
+            this.updateStatusCellCallBeck(data);
         }
     }
+
+    public updateCheckWinner(data: boolean, players: string): void {
+        if (this.checkWinnerCallBack) {
+            this.checkWinnerCallBack(data, players);
+        }
+    }
+
 
     public startGame(time: string): void {
         this.resetGame();
@@ -78,6 +87,8 @@ export class Core {
     private checkWinner(): void {
         if (this.playerScore === this.upperScore || this.computerScore === this.upperScore) {
             clearInterval(this.timerID!);
+            const players = this.playerScore === this.upperScore ? Players.playerOne : Players.playerTwo;
+            this.updateCheckWinner(true, players);
             return;
         }
         this.generateRandomCell();

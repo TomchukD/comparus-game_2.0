@@ -39,8 +39,6 @@ export class GameComponent implements OnInit {
 
     public disabled: boolean = false;
 
-    public timerID = this.core.timerID;
-
     // ########################################
 
     constructor(private core: Core) {
@@ -67,9 +65,15 @@ export class GameComponent implements OnInit {
     // ########################################
 
     ngOnInit(): void {
-        this.core.dataChangeCallback = ((update: string[]) => {
+        this.core.updateStatusCellCallBeck = ((update: string[]) => {
             this.gridStateCell = update;
         });
+
+        this.core.checkWinnerCallBack = ((isShowModal: boolean, players: string) => {
+            this.showModal = isShowModal;
+            this.winner = players;
+        });
+
     }
 
     // ########################################
