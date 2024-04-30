@@ -5,7 +5,7 @@
     </div>
     <div class="block">
         <button class="button button-start" [disabled]="isDisabled" (click)="startGame()">Почати</button>
-        <button class="button button-reset" (click)="resetGame()">Спочатку
+        <button class="button button-reset" [disabled]="isDisabled" (click)="resetGame()">Спочатку
         </button>
     </div>
     <label class="form">
