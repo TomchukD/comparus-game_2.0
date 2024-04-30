@@ -1,0 +1,156 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+
+    &-disabled {
+        pointer-events: none;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            opacity: .5;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #FFFFFF;
+        }
+
+    }
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.idle {
+    background-color: blue;
+
+    &:hover {
+        background-color: #8383D5;
+    }
+}
+
+.pending {
+    background-color: #FFC107;
+}
+
+.success {
+    background-color: #4CAF50;
+}
+
+.fail {
+    background-color: #F44336;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #BBBBBB;
+    }
+
+    &-start {
+        background-color: #007BFF;
+
+        &:disabled {
+            background-color: #8BB5E3;
+        }
+
+        &:hover {
+            background-color: #0056B3;
+        }
+    }
+
+    &-reset {
+        background-color: #FF0000;
+
+        &:disabled {
+            background-color: #E38B8B;
+        }
+    }
+
+    &-close {
+        background-color: #CCCCCC;
+    }
+
+}
+
+
+.block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.form {
+    display: flex;
+
+    &-input {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &-error {
+        color: red;
+    }
+}
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+    &-open {
+        display: flex;
+
+    }
+
+    &-content {
+        width: 350px;
+        background-color: #FFFFFF;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+

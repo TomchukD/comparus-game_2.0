@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="block">
+        <p>Гравець: {{ playerScore }}</p>
+        <p>Комп'ютер: {{ computerScore }}</p>
+    </div>
+    <div class="block">
+        <button class="button button-start" [disabled]="isDisabled" (click)="startGame()">Почати</button>
+        <button class="button button-reset" (click)="resetGame()">Спочатку
+        </button>
+    </div>
+    <label class="form">
+        N (час в мілісекундах)
+        <div class="form-input">
+            <input #time (input)="onlyNumber(time.value)"
+                   [formControl]="timeForm">
+            @if (!timeControlValue) {
+                <span class="form-error">Ведіть час</span>
+            }
+        </div>
+    </label>
+
+    <div class="grid" [ngClass]="{'grid-disabled': !timeControlValue}">
+        @for (item of gridCells; track item; let i = $index) {
+            <div class="cell" [ngClass]="gridStateCell[i]" (click)="onClickCell(i)"></div>
+        }
+    </div>
+    <div class="modal" [ngClass]="{'modal-open': showModal}">
+        <div class="modal-content">
+            <h2>Переможець: {{ winner }}</h2>
+            <p>Гравець: {{ playerScore }}</p>
+            <p>Комп'ютер: {{ computerScore }}</p>
+            <button class="button button-close" (click)="hideModal()">Закрити</button>
+        </div>
+    </div>
+</div>
